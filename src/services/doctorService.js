@@ -18,12 +18,12 @@ let getTopDoctorHome = (limitInput) => {
                     {
                         model: db.Allcode,
                         as: "positionData",
-                        attribute: ["valueEn", "valueVi"],
+                        attributes: ["valueEn", "valueVi"],
                     },
                     {
                         model: db.Allcode,
                         as: "genderData",
-                        attribute: ["valueEn", "valueVi"],
+                        attributes: ["valueEn", "valueVi"],
                     },
                 ],
                 raw: true,
@@ -168,7 +168,30 @@ let getDetailDoctorById = (inputId) => {
                         {
                             model: db.Allcode,
                             as: "positionData",
-                            attribute: ["valueEn", "valueVi"],
+                            attributes: ["valueEn", "valueVi"],
+                        },
+                        {
+                            model: db.Doctor_Info,
+                            attributes: {
+                                exclude: ["id", "doctorId"],
+                            },
+                            include: [
+                                {
+                                    model: db.Allcode,
+                                    as: "priceTypeData",
+                                    attributes: ["valueEn", "valueVi"],
+                                },
+                                {
+                                    model: db.Allcode,
+                                    as: "provinceTypeData",
+                                    attributes: ["valueEn", "valueVi"],
+                                },
+                                {
+                                    model: db.Allcode,
+                                    as: "paymentTypeData",
+                                    attributes: ["valueEn", "valueVi"],
+                                },
+                            ],
                         },
                     ],
                     raw: false,
@@ -250,7 +273,7 @@ let getScheduleByDate = (doctorId, date) => {
                         {
                             model: db.Allcode,
                             as: "timeTypeData",
-                            attribute: ["valueEn", "valueVi"],
+                            attributes: ["valueEn", "valueVi"],
                         },
                     ],
                     raw: false,
