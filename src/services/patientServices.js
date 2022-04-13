@@ -10,7 +10,7 @@ let postBookAppointment = (data) => {
                     errMessage: "Missing required parameter",
                 });
             } else {
-                let user = await db.user.findOrCreate({
+                let user = await db.User.findOrCreate({
                     where: { email: data.email },
                     defaults: {
                         email: data.email,
