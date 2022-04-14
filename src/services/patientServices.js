@@ -5,7 +5,13 @@ import emailService from "./emailService";
 let postBookAppointment = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.email || !data.doctorId || !data.timeType || !data.date) {
+            if (
+                !data.email ||
+                !data.doctorId ||
+                !data.timeType ||
+                !data.date ||
+                !data.fullName
+            ) {
                 resolve({
                     errCode: 1,
                     errMessage: "Missing required parameter",
@@ -13,9 +19,10 @@ let postBookAppointment = (data) => {
             } else {
                 await emailService.sendSimpleEmail({
                     receiverEmail: data.email,
-                    patientName: "Nguyễn Đình Quốc Cường",
-                    time: "9:00 - 10:00 Chủ nhật 17/4/2022",
-                    doctorName: "QCuong",
+                    patientName: data.fullName,
+                    time: data.timeString,
+                    doctorName: data.doctorName,
+                    language: data.language,
                     redirectLink: "https://github.com/cuonggaim",
                 });
 
