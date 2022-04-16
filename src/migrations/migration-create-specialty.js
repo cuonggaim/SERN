@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
     up: async (queryInterface, Sequelize) => {
-        await queryInterface.createTable('specialties', {
-
+        await queryInterface.createTable("specialties", {
             // currentNumber: DataTypes.INTEGER,
             // maxNumber: DataTypes.INTEGER,
             // date: DataTypes.DATE,
@@ -13,29 +12,31 @@ module.exports = {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
             },
             name: {
-                type: Sequelize.STRING
-            },
-            description: {
-                type: Sequelize.TEXT
+                type: Sequelize.STRING,
             },
             image: {
-                type: Sequelize.STRING
+                type: Sequelize.BLOB("long"),
             },
-
+            descriptionHTML: {
+                type: Sequelize.TEXT,
+            },
+            descriptionMarkdown: {
+                type: Sequelize.TEXT,
+            },
             createdAt: {
                 allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
             },
             updatedAt: {
                 allowNull: false,
-                type: Sequelize.DATE
-            }
+                type: Sequelize.DATE,
+            },
         });
     },
     down: async (queryInterface, Sequelize) => {
-        await queryInterface.dropTable('specialties');
-    }
+        await queryInterface.dropTable("specialties");
+    },
 };
